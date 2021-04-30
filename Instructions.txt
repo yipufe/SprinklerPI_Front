@@ -1,19 +1,31 @@
-//Find out the mapping for the gpio pins
-gpio readall
-//Once found GPIO pin use the BCM number to assign the values
+//I am using NodeJS Version: v12.14.0
+//npm version: 6.13.4
 
-Back end express.js node server here
+//Back end express.js node server here
 git clone https://github.com/yipufe/SprinkerPI_Back.git
 npm install
+//Find out the mapping for the gpio pins
+gpio readall
+//Once found GPIO pin use the BCM number to assign the values in index.js
 
-Front end vue 3 project here
+//Front end vue 3 project here
 git clone https://github.com/yipufe/SprinklerPI_Front.git
 npm install
+//in /src/store/store.js modify the constant "restfulAPI_path" to point to the PI
 npm run build
 
-Managing both in one place using pm2 (pm2 starts the servers on bootup)
+//Managing both servers in one place using pm2 (pm2 starts the servers on bootup)
 npm install pm2 -g
 //Navigate to front end dir
-pm2 start index.js
+pm2 start index.js --name "Front end"
 //Navigate to back end dir
-pm2 start index.js
+pm2 start index.js --name "Back end"
+
+//to view the running servers type the following
+pm2 list
+
+//For setting pm2 up for starting the servers on boot up
+pm2 startup
+//copy and paste the command as given and execute it, this will help pm2 startup on boot
+pm2 save
+//this command saves the active server list you want restarted on reboot
