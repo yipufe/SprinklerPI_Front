@@ -1,6 +1,6 @@
 <template>
     <div :class="buttonClasses">
-      <div class="button-top"><span>Next</span></div>
+      <div class="button-top"><span></span></div>
       <div class="button-center">{{schedule.number}}</div>
       <div class="button-bottom">{{schedule.label}}</div>
     </div>
