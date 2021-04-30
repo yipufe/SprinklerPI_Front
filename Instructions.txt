@@ -1,0 +1,19 @@
+//Find out the mapping for the gpio pins
+gpio readall
+//Once found GPIO pin use the BCM number to assign the values
+
+Back end express.js node server here
+git clone https://github.com/yipufe/SprinkerPI_Back.git
+npm install
+
+Front end vue 3 project here
+git clone https://github.com/yipufe/SprinklerPI_Front.git
+npm install
+npm run build
+
+Managing both in one place using pm2 (pm2 starts the servers on bootup)
+npm install pm2 -g
+//Navigate to front end dir
+pm2 start index.js
+//Navigate to back end dir
+pm2 start index.js
