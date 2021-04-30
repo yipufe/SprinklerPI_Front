@@ -1,15 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+  data() {
+    return {
+      polling: null
+    }
+  },
+  created: function() {
+    const numberOfStations = 8
+    //Load all station schedules
+    for(let stationNumber=1; stationNumber<=numberOfStations; stationNumber++) {
+      this.$store.dispatch('loadStation', {stationNumber})
+    }
+
+    this.polling = setInterval(()=>{
+      const numberOfStations = 8
+      //Load all station schedules
+      for(let stationNumber=1; stationNumber<=numberOfStations; stationNumber++) {
+        this.$store.dispatch('loadStation', {stationNumber})
+      }
+    }, 5000)
+
+  },
+  beforeUnmount: function() {
+    clearInterval( this.polling )
   }
 }
 </script>
@@ -21,6 +43,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+body {
+  margin: 0px;
+}
+
 </style>
